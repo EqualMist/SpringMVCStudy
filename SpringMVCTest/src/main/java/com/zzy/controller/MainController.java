@@ -16,7 +16,7 @@ public class MainController {
     @RequestMapping("/index")
     public String index() {
         System.out.println("我是Controller中的index");
-//        if (true) throw new RuntimeException("我是异常");
+        if (true) throw new RuntimeException("我是异常");
         return "index";
     }
 
