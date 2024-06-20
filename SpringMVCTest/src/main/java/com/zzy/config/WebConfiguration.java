@@ -1,16 +1,15 @@
 package com.zzy.config;
 
 import com.zzy.bean.TestBean;
+import com.zzy.interceptor.MainInterceptor;
+import com.zzy.interceptor.SubInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.context.annotation.SessionScope;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.*;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
@@ -60,10 +59,18 @@ public class WebConfiguration implements WebMvcConfigurer {
         //配置静态资源的访问路径
     }
 
-    @Bean
-    @SessionScope
-    public TestBean testBean(){
-        return new TestBean();
+    /**
+     * 拦截器配置
+     * @param registry
+     */
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        // 一号拦截器
+        registry.addInterceptor(new MainInterceptor())
+                .addPathPatterns("/**")
+                .excludePathPatterns("/home");
+        // 二号拦截器
+         registry.addInterceptor(new SubInterceptor())
+                .addPathPatterns("/**");
     }
-
 }
