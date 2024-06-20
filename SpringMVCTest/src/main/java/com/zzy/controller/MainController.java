@@ -1,5 +1,6 @@
 package com.zzy.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.zzy.bean.TestBean;
 import com.zzy.entity.User;
 import org.springframework.stereotype.Controller;
@@ -16,14 +17,16 @@ public class MainController {
     @RequestMapping("/index")
     public String index() {
         System.out.println("我是Controller中的index");
-        if (true) throw new RuntimeException("我是异常");
         return "index";
     }
 
-    @RequestMapping("/home")
-    public String home(Model model) {
-        System.out.println("我是Controller中的home");
-        return "home";
+    @RequestMapping(value = "/home", produces = "application/json")
+    @ResponseBody
+    public User home() {
+//        JSONObject json = new JSONObject();
+//        json.put("student", new User(1, "爱丽希雅", "123456"));
+        User user = new User(1, "爱丽希雅", "123456");
+        return user;
     }
 
 //    @RequestMapping(value = "/index/{id}", method = RequestMethod.GET)

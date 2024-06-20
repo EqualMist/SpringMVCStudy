@@ -1,5 +1,6 @@
 package com.zzy.config;
 
+import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.zzy.bean.TestBean;
 import com.zzy.interceptor.MainInterceptor;
 import com.zzy.interceptor.SubInterceptor;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.servlet.config.annotation.*;
@@ -14,6 +16,8 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ITemplateResolver;
+
+import java.util.List;
 
 @ComponentScan("com.zzy.controller")
 @Configuration
@@ -73,5 +77,14 @@ public class WebConfiguration implements WebMvcConfigurer {
         // 二号拦截器
          registry.addInterceptor(new SubInterceptor())
                 .addPathPatterns("/**");
+    }
+
+    /**
+     * 注册FasJson转换器
+     * @param converters
+     */
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        converters.add(new FastJsonHttpMessageConverter());
     }
 }
