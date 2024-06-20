@@ -34,6 +34,7 @@ public class WebConfiguration implements WebMvcConfigurer {
     @Bean
     public SpringResourceTemplateResolver templateResolver(){
         SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
+        resolver.setCharacterEncoding("UTF-8");
         resolver.setSuffix(".html");   //需要解析的后缀名称
         resolver.setPrefix("/WEB-INF/template/"); //需要解析的HTML页面文件存放的位置
 //        resolver.setTemplateMode("HTML5");
