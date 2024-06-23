@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-<!--    <script th:src="@{/static/test.js}"></script>-->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script th:src="@{/static/test.js}"></script>
 </head>
 <body>
-    我是index
-<!--    <div th:text="${message}"/>-->
+    你好，
+    <span id="username"></span>
+    您的年龄是：
+    <span id="age"></span>
+    <button onclick="updateData()">点我更新页面数据</button>
+    <button onclick="sendData()">点我发送页面数据</button>
 </body>
 </html>

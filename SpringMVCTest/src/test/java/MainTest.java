@@ -10,7 +10,7 @@ public class MainTest {
     public void test() {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("names", Arrays.asList("Tom", "Jerry", "Mike"));
-        jsonObject.put("user", new User(1, "爱丽希雅", "123456"));
+        jsonObject.put("user", new User(1, "爱丽希雅", "123456", 18));
         jsonObject.put("age", 18);
         System.out.println(jsonObject.toString());
     }

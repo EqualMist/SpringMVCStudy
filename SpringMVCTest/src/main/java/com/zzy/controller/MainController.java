@@ -2,6 +2,7 @@ package com.zzy.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.zzy.bean.TestBean;
+import com.zzy.entity.Student;
 import com.zzy.entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,13 +21,20 @@ public class MainController {
         return "index";
     }
 
-    @RequestMapping(value = "/home", produces = "application/json")
+    @RequestMapping(value = "/data", produces = "application/json")
     @ResponseBody
     public User home() {
 //        JSONObject json = new JSONObject();
-//        json.put("student", new User(1, "爱丽希雅", "123456"));
-        User user = new User(1, "爱丽希雅", "123456");
+//        json.put("student", new User(1, "爱莉希雅", "123456"));
+        User user = new User(1, "爱莉希雅", "123456", 18);
         return user;
+    }
+
+    @PostMapping(value = "/submit", produces = "application/json")
+    @ResponseBody
+    public String submit (@RequestBody Student student) {
+        System.out.println(student.toString());
+        return "{\"success\": true}";
     }
 
 //    @RequestMapping(value = "/index/{id}", method = RequestMethod.GET)

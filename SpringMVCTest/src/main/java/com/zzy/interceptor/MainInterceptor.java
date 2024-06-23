@@ -16,7 +16,7 @@ public class MainInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        System.out.println(modelAndView.getViewName());
+//        System.out.println(modelAndView.getViewName());
         System.out.println("我是一号拦截器，处理之后！");
     }
 
