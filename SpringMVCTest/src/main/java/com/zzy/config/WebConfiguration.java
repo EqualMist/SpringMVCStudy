@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.context.annotation.SessionScope;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
@@ -92,4 +93,17 @@ public class WebConfiguration implements WebMvcConfigurer {
         fastConverter.setSupportedMediaTypes(Collections.singletonList(MediaType.APPLICATION_JSON));
         converters.add(fastConverter);
     }
+
+    /**
+     * 文件上传
+     * @return
+     */
+    @Bean("multipartResolver")   //注意这里Bean的名称是固定的，必须是multipartResolver
+    public CommonsMultipartResolver commonsMultipartResolver(){
+        CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+        resolver.setMaxUploadSize(1024 * 1024 * 10);   //最大10MB大小
+        resolver.setDefaultEncoding("UTF-8");   //默认编码格式
+        return resolver;
+    }
+
 }

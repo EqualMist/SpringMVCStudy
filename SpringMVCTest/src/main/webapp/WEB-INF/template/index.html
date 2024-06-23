@@ -13,5 +13,14 @@
     <span id="age"></span>
     <button onclick="updateData()">点我更新页面数据</button>
     <button onclick="sendData()">点我发送页面数据</button>
+
+    <div>
+        <form action="upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <input type="submit">
+        </form>
+    </div>
+
+    <a href="download" download="test.jpg">下载最新资源</a>
 </body>
 </html>
